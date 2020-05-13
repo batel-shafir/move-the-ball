@@ -13,7 +13,6 @@ window.onload = function() {
     ball = document.getElementById('ball');
     color = 'red';
     init();
-  
   }
 
   function init() {
@@ -23,7 +22,6 @@ window.onload = function() {
   }
 
 function pressLeft() {
-    if (!ball.style.left) ball.style.left = "0px";
 
     if (parseInt(ball.style.left) - 50 > 0 ){
         console.log(ball.style.left);
@@ -51,7 +49,6 @@ function pressRight() {
 
 
 function pressUp() {
-    if (!ball.style.top) ball.style.top = "0px";
 
     if( parseInt(ball.style.top) - 50 > 0)
         ball.style.top = parseInt(ball.style.top) - 50 + 'px';
@@ -62,7 +59,6 @@ function pressUp() {
 }
 
 function pressDown() {
-    if (!ball.style.top) ball.style.top = "0px";
 
     if( parseInt(ball.style.top) + 50 < field.clientHeight - ball.clientHeight)
     ball.style.top = parseInt(ball.style.top) + 50 + 'px';
