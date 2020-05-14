@@ -1,70 +1,81 @@
 
 
-//ball.style.left= '0px';
 
-//console.log('1'==1); //compares content
-//console.log('1'==='2'); // compare contsnt + type
 var field;
 var ball;
 var color;
+var movement = 50;
+
+var isColliding = {
+  x: true,
+  y: true
+}
 
 window.onload = function() {
     field = document.getElementById('field');
     ball = document.getElementById('ball');
-    color = 'red';
     init();
+  }
+  function changeColor() {
+    ball.style.backgroundColor = color ? "#000000":"#D93600" ;
+    color = !color;
   }
 
   function init() {
     ball.style.left='0px';
     ball.style.top='0px';
-    // ball.style.backgroundColor = '#D93600';
+    color = true;
+    isColliding.x = true;
+    isColliding.y = true;
   }
 
 function pressLeft() {
-
-    if (parseInt(ball.style.left) - 50 > 0 ){
-        console.log(ball.style.left);
-        ball.style.left = parseInt(ball.style.left) - 50 + 'px';
+    if (parseInt(ball.style.left) - movement > 0 ){
+        ball.style.left = parseInt(ball.style.left) - movement + 'px';
+        isColliding.x = false;
     }
     else {
         ball.style.left = 0 + 'px';
-        setTimeout(function(){console.log('in to'); ball.style.backgroundColor = color ? "#000000":"#D93600";  color = !color;},600);
-
-
+        (!isColliding.x) && (changeColor());
+        isColliding.x = true;
     }
 }
 
 function pressRight() {
-
-    if( parseInt(ball.style.left) + 50 < (field.clientWidth - ball.clientWidth )){
-    ball.style.left = parseInt(ball.style.left) + 50 + 'px';
+    if( parseInt(ball.style.left) + movement < (field.clientWidth - ball.clientWidth )){
+        ball.style.left = parseInt(ball.style.left) + movement + 'px';
+        isColliding.x = false;
     }
     else {
         ball.style.left = field.clientWidth - ball.clientWidth + 'px';
-        setTimeout(function(){console.log('in to'); ball.style.backgroundColor = (color == 'red')? "#000000":"#D93600";  color = !color;},600);
-      
-    }
+        (!isColliding.x) && (changeColor());
+        isColliding.x = true;    
+    }      
+    
 }
 
 
 function pressUp() {
-
-    if( parseInt(ball.style.top) - 50 > 0)
-        ball.style.top = parseInt(ball.style.top) - 50 + 'px';
+    if( parseInt(ball.style.top) - movement > 0){
+        ball.style.top = parseInt(ball.style.top) - movement + 'px';
+        isColliding.y = false;
+    }
     else{
         ball.style.top = 0;
-        setTimeout(function(){console.log('in to'); ball.style.backgroundColor = color? "#000000":"#D93600";  color = !color;},600);
+        (!isColliding.y) && (changeColor());
+        isColliding.y = true;
     } 
 }
 
 function pressDown() {
-
-    if( parseInt(ball.style.top) + 50 < field.clientHeight - ball.clientHeight)
-    ball.style.top = parseInt(ball.style.top) + 50 + 'px';
+    if( parseInt(ball.style.top) + movement < field.clientHeight - ball.clientHeight){
+        ball.style.top = parseInt(ball.style.top) + movement + 'px';
+        isColliding.y = false;
+    }
     else{
         ball.style.top = field.clientHeight - ball.clientHeight + 'px';
-        setTimeout(function(){console.log(color); ball.style.backgroundColor = color ? "#000000":"#D93600";  color = !color;},600);
+        (!isColliding.y) && (changeColor());
+        isColliding.y = true;
     } 
 }
 
