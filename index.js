@@ -29,6 +29,8 @@ window.onload = function() {
     isColliding.y = true;
   }
 
+  //check if in boundaries .
+
 function pressLeft() {
     if (parseInt(ball.style.left) - movement > 0 ){
         ball.style.left = parseInt(ball.style.left) - movement + 'px';
